@@ -16,8 +16,6 @@ This repository contains a Colab-based workflow for training and deploying a YOL
 - `Train_YOLO_Models_v1.ipynb`: Main Colab notebook (training + testing)
 - `data-4.zip`: Training images and annotations (drag into Colab)
 - `matching-images.zip`: Images for prediction/testing (drag into Colab)
-- `full_legend_summary.xlsx`: Sheet-based lookup table for legend color-to-metric mapping
-- `yolo11s.pt`: Pretrained YOLOv11 weights (optional)
 
 ### How to Use
 
@@ -25,7 +23,6 @@ This repository contains a Colab-based workflow for training and deploying a YOL
 2. **Upload Required Files**: Drag and drop the following into the file pane:
     - `data-4.zip`
     - `matching-images.zip`
-    - `full_legend_summary.xlsx`
 3. **Run the Notebook**:
     - It will unzip the datasets
     - Train the model (if not already trained)
