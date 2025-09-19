@@ -1,0 +1,8 @@
+path: /Users/nickmirsepassi/nick-claude/001/tunnel-yolo/train-images
+train: train/images
+val: validation/images
+nc: 3
+names:
+- crown
+- label
+- tunnel-opening

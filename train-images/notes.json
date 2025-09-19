@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "crown"
+    },
+    {
+      "id": 1,
+      "name": "label"
+    },
+    {
+      "id": 2,
+      "name": "tunnel-opening"
+    }
+  ],
+  "info": {
+    "year": 2025,
+    "version": "1.0",
+    "contributor": "Label Studio"
+  }
+}
