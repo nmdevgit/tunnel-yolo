@@ -1,47 +1,115 @@
-## Tunnel-YOLO: Automating Image-Based Analysis from RS2
+# Tunnel YOLO - Local Analysis System
 
-This repository contains a Colab-based workflow for training and deploying a YOLOv11 model to detect tunnel features—specifically tunnel openings, crowns, and embedded legend labels—from RS2-generated model outputs. It also includes a workflow for interpreting predictions to extract displacement or other metric data from detected legends using pixel-based color matching.
+A local Python application for automated analysis of RS2 tunnel model images using YOLOv11 object detection. This system detects tunnel features (crowns, labels, openings) and extracts displacement data through intelligent color matching.
 
-### Features
+## Features
 
-- Train YOLOv11 on tunnel-related classes using your own dataset
-- Detect objects (tunnel-opening, crown, label) from RS2 images
-- Automatically extract and match legend values from color bars
-- Summarize predicted values per crown region
-- Simple interface for uploading images for predictions
-- Ideal for automation in numerical modelling reviews
+- **Local execution** - No cloud dependencies, runs entirely on your machine
+- **Modern web interface** - Dark theme Flask GUI for single image analysis
+- **Batch processing** - Analyze multiple images via command line
+- **HTML reports** - Professional reports with embedded images and displacement data
+- **Clean architecture** - Minimal, organized Python scripts
+- **Pre-trained model** - Ready-to-use YOLOv11 model included
 
-### File Structure
+## Quick Start
 
-- `Train_YOLO_Models_v1.ipynb`: Main Colab notebook (training + testing)
-- `data-4.zip`: Training images and annotations (drag into Colab)
-- `matching-images.zip`: Images for prediction/testing (drag into Colab)
+```bash
+python run.py
+```
 
-### How to Use
+Choose from 5 options:
+1. **Train model** - Train on your own data
+2. **Test model** - Batch analyze all test images
+3. **Web GUI** - Interactive single image analysis
+4. **Generate report** - Create HTML summary report
+5. **Install dependencies** - Setup required packages
 
-1. **Open in Colab**: Clone this repo or open the notebook directly in Colab.
-2. **Upload Required Files**: Drag and drop the following into the file pane:
-    - `data-4.zip`
-    - `matching-images.zip`
-3. **Run the Notebook**:
-    - It will unzip the datasets
-    - Train the model (if not already trained)
-    - Detect features and generate displacement predictions
-    - Display results clearly in the terminal
+## File Structure
 
-4. **Upload RS2 Image for Quick Testing** (Optional):
-    - You can upload an image via Colab UI for single image detection and prediction summary.
+```
+├── run.py              # Main interface
+├── train.py            # Model training
+├── test.py             # Batch image analysis
+├── flask_gui.py        # Web interface
+├── report.py           # HTML report generation
+├── train-images/       # Training dataset
+├── test-images/        # Test images (test-001.png, etc.)
+└── runs/detect/train/  # Trained model and results
+```
 
-### Notes
+## Web Interface
 
-- Please ensure all RS2 legend values are in decimal format (not scientific notation).
-- Model works for displacement, stress, or any other visual metric since detection is pixel-driven.
-- This system is designed to be easily extended to include more features like sidewall detection and 3D section comparisons.
+Launch the modern web GUI:
+```bash
+python run.py
+# Select option 3
+```
 
-### Background (YOLO)
+- Dark theme with professional styling
+- Drag & drop image upload
+- Real-time analysis results
+- Crown displacement calculations
+- Clean, minimal design
 
-YOLO (You Only Look Once) is a real-time object detection algorithm. It processes the entire image in a single pass, predicting bounding boxes and class labels efficiently. We use it here to locate and classify components of RS2 outputs for downstream automation.
+## Batch Analysis
 
-### Feedback
+Process all test images:
+```bash
+python run.py
+# Select option 2
+```
 
-Please raise an issue or contact Nick if you encounter bugs or have suggestions for improvement. Contributions are welcome as this tool evolves with project needs.
+Results saved to `test-image-results.csv`
+
+## HTML Reports
+
+Generate comprehensive reports:
+```bash
+python run.py
+# Select option 4
+```
+
+Creates `tunnel_analysis_report.html` with:
+- Embedded images
+- Displacement data tables
+- Professional dark theme styling
+- Summary statistics
+
+## Requirements
+
+- Python 3.8+
+- ultralytics (YOLOv11)
+- opencv-python
+- pandas
+- pytesseract
+- flask
+- pillow
+
+Install automatically via option 5 in `run.py`
+
+## Technical Details
+
+**Object Detection**: YOLOv11 model trained to detect:
+- Tunnel crowns
+- Legend labels
+- Tunnel openings
+
+**Displacement Analysis**: 
+- OCR extraction of legend values
+- Color-based displacement matching
+- Statistical analysis per crown
+
+**Image Processing**:
+- Automatic image preprocessing
+- Color space analysis
+- Edge detection for crown isolation
+
+## Data Format
+
+**Training Images**: Located in `train-images/` with YOLO format annotations
+**Test Images**: Sequential naming `test-001.png` through `test-026.png`
+**Results**: CSV output with crown ID, displacement, and confidence scores
+
+## License
+
+Open source - extend and modify as needed for your RS2 analysis workflows.
